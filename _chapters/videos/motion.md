@@ -10,6 +10,9 @@ order: 0
 	- [Subtopic 1-3](#subtopic-1-3)
 - [7.2 Lukas-Kanade Method](#7.2-lukas-kanade method)
 - [7.3 Pyramids for Large Motion](#7.3-pyramids-for-large-motion)
+	- [7.3.1 Previous Assumptions and Large Motion](#7.3.1-previous-assumptions-and-large-motion) 
+	- [7.3.2 Optical Flow Estimation with Pyramids](#7.3.2-optical-flow-estimation-with-pyramids) 
+	- [7.3.3 Optical Flow Results](#7.3.3-optical-flow-results) 
 - [7.4 Horn-Schunk Method](#7.4-horn-schunk-method)
 - [7.5 Applications](#7.5-applications)
 
@@ -99,10 +102,21 @@ This should give you the primary tools to develop your notes. Check out the [mar
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
 
 ## 7.3 Pyramids for Large Motion
+### 7.3.1 Previous Assumptions and Large Motion
 We made some key assumptions in the previous section about Lukas-Kanade Method, such as: 
+
 **Small motion** - points do not move very far
+
 **Brightness constancy** - projection of the same point is the same in every frame
+
 **Spacial coherence** - points move like their neighbors
+
+However we still need to consider cases with larger motion, more than one pixel. One potential idea that can help us is reducing resolution of the video, such that motion size is one pixel. (put an image 1 here) 
+Using that we can detect optical flow at the lower resolution image, and use that to build up back to higher resolution video. 
+
+### 7.3.2 Optical Flow Estimation with Pyramids
+
+### 7.3.3 Optical Flow Results
 
 ## 7.4 Horn-Schunk Method
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
