@@ -99,7 +99,10 @@ This should give you the primary tools to develop your notes. Check out the [mar
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
 
 ## 7.3 Pyramids for Large Motion
-This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
+We made some key assumptions in the previous section about Lukas-Kanade Method, such as: 
+**Small motion** - points do not move very far
+**Brightness constancy** - projection of the same point is the same in every frame
+**Spacial coherence** - points move like their neighbors
 
 ## 7.4 Horn-Schunk Method
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
