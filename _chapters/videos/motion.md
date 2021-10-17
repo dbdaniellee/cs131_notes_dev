@@ -115,8 +115,13 @@ However we still need to consider cases with larger motion, more than one pixel.
 Using that we can detect optical flow at the lower resolution image, and use that to build up back to higher resolution video. 
 
 ### 7.3.2 Optical Flow Estimation with Pyramids
+We want to calculate optical flow in a coarse-to-fine approach. We first calculate the pyramid of the image, by converting image in lower resolution versions in multiple layers. As a result, motion that was 10 pixels in the high-resolution image, results in motion of 1.25 pixels in a lower resolution version. (put image 2 here)
+
+We run Lukas-Kanade on the low resolution image, because we can do it as now we satisfy small motion requirment. We use solution of that algorithm to upsample to the next layer with a little higher resolution. There we use L-K again but to detect residual movements that were not detected as a result of resolution decrease. We keep repeating that process until we get back to the original high resolution layer. (put image 3)
 
 ### 7.3.3 Optical Flow Results
+We can see what happens when we don't use pyramids. Vectors in areas of large motion are very innacurate anf fail to represent reality. (put image 4)
+Whereas on the picture where we use pyramids, we can see that vectors are properly alligned and calculated. (put image 5)
 
 ## 7.4 Horn-Schunk Method
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
