@@ -20,7 +20,7 @@ order: 0
 [//]: # (Leave this line here, but you can replace the name field with anything! It's used in the HTML structure of the page but isn't visible to users)
 <a name='Topic 1'></a>
 
-## 7.1 Optical Flow
+## 7.0 LEAVE THIS UNTIL WE ARE DONE so everyone has instructions
 	
 Here you can start to talk about the first topic of your notes. You can bold text like **this**, or italicize text like *this*. If you want to make a numbered list it's as easy as
 1.  
@@ -92,10 +92,9 @@ $$\begin{bmatrix}
 
 As with the labelled equations, it makes a difference whether the lines above and below the equation are blank, so keep that in mind while debugging! 
 
+## 7.1 Optical Flow
+This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
 
-
-
-<a name='Topic 2'></a>
 ## 7.2 Lukas-Kanade Method
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
 
