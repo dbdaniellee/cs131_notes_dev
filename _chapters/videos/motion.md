@@ -113,18 +113,30 @@ We made some key assumptions in the previous section about Lukas-Kanade Method, 
 
 However we still need to consider cases with larger motion, more than one pixel. One potential idea that can help us is reducing resolution of the video, such that motion size is one pixel. 
 <div class="fig figcenter fighighlight">
-  <img src="{{ https://github.com }}/cs131_notes_dev/tree/master/_chapters/videos/picture_7.3/IMG_3774.jpg">
+  <img src="/_chapters/videos/picture_7.3/IMG_3774.jpg">
 </div>
 Using that we can detect optical flow at the lower resolution image, and use that to build up back to higher resolution video. 
 
 ### 7.3.2 Optical Flow Estimation with Pyramids
-We want to calculate optical flow in a coarse-to-fine approach. We first calculate the pyramid of the image, by converting image in lower resolution versions in multiple layers. As a result, motion that was 10 pixels in the high-resolution image, results in motion of 1.25 pixels in a lower resolution version. (put image 2 here)
+We want to calculate optical flow in a coarse-to-fine approach. We first calculate the pyramid of the image, by converting image in lower resolution versions in multiple layers. As a result, motion that was 10 pixels in the high-resolution image, results in motion of 1.25 pixels in a lower resolution version. 
+<div class="fig figcenter fighighlight">
+  <img src="/_chapters/videos/picture_7.3/IMG_BECD9E44C44F-1.jpeg">
+</div>
 
-We run Lukas-Kanade on the low resolution image, because we can do it as now we satisfy small motion requirment. We use solution of that algorithm to upsample to the next layer with a little higher resolution. There we use L-K again but to detect residual movements that were not detected as a result of resolution decrease. We keep repeating that process until we get back to the original high resolution layer. (put image 3)
+We run Lukas-Kanade on the low resolution image, because we can do it as now we satisfy small motion requirment. We use solution of that algorithm to upsample to the next layer with a little higher resolution. There we use L-K again but to detect residual movements that were not detected as a result of resolution decrease. We keep repeating that process until we get back to the original high resolution layer. 
+<div class="fig figcenter fighighlight">
+  <img src="/_chapters/videos/picture_7.3/IMG_AEBE3D9581A9-1.jpeg">
+</div>
 
 ### 7.3.3 Optical Flow Results
-We can see what happens when we don't use pyramids. Vectors in areas of large motion are very innacurate anf fail to represent reality. (put image 4)
-Whereas on the picture where we use pyramids, we can see that vectors are properly alligned and calculated. (put image 5)
+We can see what happens when we don't use pyramids. Vectors in areas of large motion are very innacurate and fail to represent reality. 
+<div class="fig figcenter fighighlight">
+  <img src="/_chapters/videos/picture_7.3/IMG_78D6637B7B4A-1.jpeg">
+</div>
+Whereas on the picture where we use pyramids, we can see that vectors are properly alligned and calculated. 
+<div class="fig figcenter fighighlight">
+  <img src="/_chapters/videos/picture_7.3/IMG_8F39FB500A2B-1.jpeg">
+</div>
 
 ## 7.4 Horn-Schunk Method
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
