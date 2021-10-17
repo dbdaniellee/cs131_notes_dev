@@ -4,14 +4,14 @@ keywords:
 order: 0
 ---
 
-- [7.1 Optical Flow](#optical-flow)
+- [7.1 Optical Flow](#7.1-optical-flow)
 	- [Subtopic 1-1](#subtopic-1-1)
 	- [Subtopic 1-2](#subtopic-1-2)
 	- [Subtopic 1-3](#subtopic-1-3)
-- [7.2 Lukas-Kanade Method](#lukas-kanade method)
-- [7.3 Pyramids for Large Motion](#pyramids-for-large-motion)
-- [7.4 Horn-Schunk Method](#horn-schunk-method)
-- [7.5 Applications](#applications)
+- [7.2 Lukas-Kanade Method](#7.2-lukas-kanade method)
+- [7.3 Pyramids for Large Motion](#7.3-pyramids-for-large-motion)
+- [7.4 Horn-Schunk Method](#7.4-horn-schunk-method)
+- [7.5 Applications](#7.5-applications)
 
 [//]: # (This is how you can make a comment that won't appear in the web page! It might be visible on some machines/browsers so use this only for development.)
 
@@ -96,6 +96,14 @@ As with the labelled equations, it makes a difference whether the lines above an
 
 
 <a name='Topic 2'></a>
-## Second Big Topic
+## 7.2 Lukas-Kanade Method
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
 
+## 7.3 Pyramids for Large Motion
+This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
+
+## 7.4 Horn-Schunk Method
+This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
+
+## 7.5 Applications
+This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
