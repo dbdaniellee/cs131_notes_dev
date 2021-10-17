@@ -111,7 +111,10 @@ We made some key assumptions in the previous section about Lukas-Kanade Method, 
 
 **Spacial coherence** - points move like their neighbors
 
-However we still need to consider cases with larger motion, more than one pixel. One potential idea that can help us is reducing resolution of the video, such that motion size is one pixel. (put an image 1 here) 
+However we still need to consider cases with larger motion, more than one pixel. One potential idea that can help us is reducing resolution of the video, such that motion size is one pixel. 
+<div class="fig figcenter fighighlight">
+  <img src="{{ https://github.com }}/cs131_notes_dev/tree/master/_chapters/videos/picture_7.3/IMG_3774.jpg">
+</div>
 Using that we can detect optical flow at the lower resolution image, and use that to build up back to higher resolution video. 
 
 ### 7.3.2 Optical Flow Estimation with Pyramids
