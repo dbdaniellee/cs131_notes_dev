@@ -5,9 +5,6 @@ order: 0
 ---
 
 - [7.1 Optical Flow](#7.1-optical-flow)
-	- [Subtopic 1-1](#subtopic-1-1)
-	- [Subtopic 1-2](#subtopic-1-2)
-	- [Subtopic 1-3](#subtopic-1-3)
 - [7.2 Lukas-Kanade Method](#7.2-lukas-kanade method)
 - [7.3 Pyramids for Large Motion](#7.3-pyramids-for-large-motion)
 	- [7.3.1 Previous Assumptions and Large Motion](#7.3.1-previous-assumptions-and-large-motion) 
