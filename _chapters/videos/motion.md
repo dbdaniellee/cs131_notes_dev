@@ -43,7 +43,7 @@ For a more detailed cheatsheet on the most important functionality of Markdown, 
 You might want to include images in your notes, since Computer Vision as a field is blessed with tons of cool visualizations. Here's an example from the CS 231N notes page we included as a reference for you:
 
 <div class="fig figcenter fighighlight">
-  <img src="{{ stepash17.github.io }}/assets/examples/classify.png">
+  <img src="{{ site.baseurl }}/assets/examples/classify.png">
   <div class="figcaption">Put your informative caption here! If you really want to mess around with the classes in this div container then feel free, but inserting images just like this should work great!</div>
 </div>
 
