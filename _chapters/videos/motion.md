@@ -110,7 +110,7 @@ We made some key assumptions in the previous section about Lukas-Kanade Method, 
 
 However we still need to consider cases with larger motion, more than one pixel. One potential idea that can help us is reducing resolution of the video, such that motion size is one pixel. 
 <div class="fig figcenter fighighlight">
-  <img src="{{ site.baseurl }}videos/picture_7.3/IMG_3774.jpg">
+  <img src="{{ site.baseurl }}/videos/picture_7.3/IMG_3774.jpg">
 </div>
 Using that we can detect optical flow at the lower resolution image, and use that to build up back to higher resolution video. 
 
