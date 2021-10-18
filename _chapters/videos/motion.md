@@ -96,7 +96,67 @@ As with the labelled equations, it makes a difference whether the lines above an
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
 
 ## 7.2 Lukas-Kanade Method
-This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
+
+### 7.2.1 Motivation for Lucas-Kanade
+
+From 7.1, we were left with some ambiguity: we have 2 unknowns (u, v) at every pixel in the image, where u(x, y) represents x-direction motion and v(x, y) represents y-direction motion. Specifically, we have the equation:
+
+$$ \nabla{I} \cdot 
+\begin{bmatrix} 
+u\\ 
+v\\ 
+\end{bmatrix} 
++ I_t = 0 $$
+
+Where \\[ \nabla{I} \\] is the intensity gradient of the image with respect to x and y, and \\[ I_t \\] is the intensity gradient with respect to t, or the "temporal derivative." As you can see, we are underconstrained because we have one equation and two unknowns (the gradients are scalar).
+
+To uncover more constraint equations, we introduce the **spatial coherence contraint,** which assumes that pixel neighbors have the same optical flow value (u, v). This lets us redefine our previous equation as:
+
+$$ \nabla{I(p_{i})} \cdot 
+\begin{bmatrix} 
+u\\ 
+v\\ 
+\end{bmatrix} 
++ I_{t}(p_i) = 0 $$
+
+Where \\[ \nabla{I(p_{i})} \\] is the intensity gradient at pixel i and \\[ I_{t}(p_i) \\] is the gradient of I with respect to t at pixel i.
+
+Now we have an **overconstraining** problem, because if we use a window of size m x m to evaluate intensity, we now have m * m equations for only 2 unknowns. For example, given a 5 x 5 window, we have 25 equations for 2 unknowns, and our sequence of equations is:
+
+$$ 
+\begin{bmatrix} 
+I_{x}(p_1) & I_{y}(p_1)\\ 
+... & ...\\
+I_{x}(p_{25}) & I_{y}(p_{25})\\
+\end{bmatrix}
+\cdot
+\begin{bmatrix} 
+u\\ 
+v\\ 
+\end{bmatrix}
+=
+-\begin{bmatrix}
+I_{t}(p_1)\\
+...\\
+I_{t}(p_{25})\\
+\end{bmatrix}
+$$
+
+In 7.2.2, we will resolve this overconstraint issue.
+
+### 7.2.2 Lucas-Kanade Flow
+
+In 7.2.1, we showed an example where we were overconstrained with 25 equations solving 2 unknowns. To resolve this issue, we will use least-squares to solve for the vector \\[ \begin{bmatrix} u\\ v\\ \end{bmatrix} \\].
+
+Referring to our previous system of equations of form \\[ A \cdot d = b \\], we will instead use the least-squares form \\[ (A^{T}A)d = A^{T}b \\]
+
+### 7.2.3 Interpreting the Eigenvalues
+
+
+
+### 7.2.4 Improving Accuracy
+
+
 
 ## 7.3 Pyramids for Large Motion
 ### 7.3.1 Previous Assumptions and Large Motion
