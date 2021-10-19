@@ -108,7 +108,7 @@ v\\
 \end{bmatrix} 
 + I_t = 0 $$
 
-Where \\[ \nabla{I} \\] is the intensity gradient of the image with respect to x and y, and \\[ I_t \\] is the intensity gradient with respect to t, or the "temporal derivative." As you can see, we are underconstrained because we have one equation and two unknowns (the gradients are scalar).
+Where \\( \nabla{I} \\) is the intensity gradient of the image with respect to x and y, and \\( I_t \\) is the intensity gradient with respect to t, or the "temporal derivative." As you can see, we are underconstrained because we have one equation and two unknowns (the gradients are scalar).
 
 To uncover more constraint equations, we introduce the **spatial coherence contraint,** which assumes that pixel neighbors have the same optical flow value (u, v). This lets us redefine our previous equation as:
 
@@ -119,7 +119,7 @@ v\\
 \end{bmatrix} 
 + I_{t}(p_i) = 0 $$
 
-Where \\[ \nabla{I(p_{i})} \\] is the intensity gradient at pixel i and \\[ I_{t}(p_i) \\] is the gradient of I with respect to t at pixel i.
+Where \\( \nabla{I(p_{i})} \\) is the intensity gradient at pixel i and \\( I_{t}(p_i) \\) is the gradient of I with respect to t at pixel i.
 
 Now we have an **overconstraining** problem, because if we use a window of size m x m to evaluate intensity, we now have m * m equations for only 2 unknowns. For example, given a 5 x 5 window, we have 25 equations for 2 unknowns, and our sequence of equations is:
 
@@ -146,9 +146,9 @@ In 7.2.2, we will resolve this overconstraint issue.
 
 ### 7.2.2 Lucas-Kanade Flow
 
-In 7.2.1, we showed an example where we were overconstrained with 25 equations solving 2 unknowns. To resolve this issue, we will use least-squares to solve for the vector \\[ \begin{bmatrix} u\\ v\\ \end{bmatrix} \\].
+In 7.2.1, we showed an example where we were overconstrained with 25 equations solving 2 unknowns. To resolve this issue, we will use least-squares to solve for the vector \\(\begin{bmatrix} u\\ v\\ \end{bmatrix} \\).
 
-Referring to our previous system of equations of form \\[ A \cdot d = b \\], we will instead use the least-squares form \\[ (A^{T}A)d = A^{T}b \\]. This new system of equations is equivalent to:
+Referring to our previous system of equations of form \\( A \cdot d = b \\), we will instead use the least-squares form \\( (A^{T}A)d = A^{T}b \\). This new system of equations is equivalent to:
 
 $$
 \begin{bmatrix}
@@ -170,15 +170,15 @@ The dimensions of resulting matrix are (2 x 2) x (2 x 1) = 2 x 1, exactly what w
 
 Some requirements for implementing Lucas-Kanade:
 
-- \\[ A^TA \\] should be invertible
-- \\[ A^TA \\] should be large enough to minimize noise (e.g. eigenvalues \\[ \lambda_1 \\] and \\[ \lambda_2 \\] should be not too small
-- \\[ A^TA \\] should be well-conditioned (e.g. \\[ \lambda_1/ \lambda_2 \\] not too large for \\[ \lambda_1 > \lambda_2 \\]
+- \\( A^TA \\) should be invertible
+- \\( A^TA \\) should be large enough to minimize noise (e.g. eigenvalues \\( \lambda_1 \\) and \\( \lambda_2 \\) should be not too small
+- \\( A^TA \\) should be well-conditioned (e.g. \\( \lambda_1/ \lambda_2 \\) not too large for \\( \lambda_1 > \lambda_2 \\)
 
-What does this matrix \\[ A^TA \\] remind you of?
+What does this matrix \\( A^TA \\) remind you of?
 
 That's right, the second moment matrix M from the Harris corner detector! Both deal with eigenvalues and a 2 x 2 matrix of summations of gradients of an image.
 
-Note that the eigenvectors and eigenvalues of \\[ A^TA \\] determine the edge direction and magnitude:
+Note that the eigenvectors and eigenvalues of \\( A^TA \\) determine the edge direction and magnitude:
 
 - The eigenvector with the larger eigenvalue contains the direction of fastest intensity change
 - The other eigenvector is perpendicular to the first
@@ -207,7 +207,7 @@ $$
 
 This is an approximation, but if we add back higher order terms, we can achieve even greater accuracy:
 
-\\[ I(x, y) + I_xu + I_yv + \\] higher order terms \\[ - I_t(x, y)\\]
+\\( I(x, y) + I_xu + I_yv + \\) higher order terms \\( - I_t(x, y)\\)
 
 The process for finding these higher terms is a polynomial root finding problem. This can be approached in a few ways:
 
@@ -226,8 +226,8 @@ Another approach to improving accuracy:
 
 Recall that in order to perform Lucas-Kanade, we made a few assumptions:
 
-- Assumed \\[ A^TA \\] is easily invertible
-- Assumed there is not much noise (eigenvalues of \\[ A^TA \\] not too small)
+- Assumed \\( A^TA \\) is easily invertible
+- Assumed there is not much noise (eigenvalues of \\( A^TA \\) not too small)
 
 When these assumptions are violated,
 
