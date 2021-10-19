@@ -136,7 +136,39 @@ Whereas on the picture where we use pyramids, we can see that vectors are proper
 </div>
 
 ## 7.4 Horn-Schunk Method
-This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
+The Horn-Shunk method seeks to formulate optical flow as a global energy function minimization. So, we will minimize an energy function for an entire image. We can represent a global energy function with the following equation: \[ E = \int \int (I_xu+ I_yv + I_t)^2 + \alpha^2 (||\delta u||^2 + ||\delta v||^2)] dx dy \]
+There are 3 major components of this equation to consider during our minimization process. \newline  
+1. The 
+\((I_xu+ I_yv + I_t)^2 \) component of the equation represents the brightness constancy, which we want to be equal to 0 in order to minimize our energy function. Thus, we want to calculate the values for u and v that minimize this term. \newline 
+2. The \(||\delta u||^2 + ||\delta v||^2) \) component of the equation is the smoothness constant. By measuring the magnitude of the the gradient of u and the gradient of v, we are verifying that the changes between pixels are small. 
+\newline 
+3. \(\alpha \) is the regularization constant. A larger alpha enforces our smoothness constraint more than the brightness constraint. 
+
+We can solve this minimization problem by deriving the equation with respect to \( u\) and \( v\) to get the following equations and can solve for u and v: 
+
+\[ 0 = I_x(I_xu + I_yv + I_t) - \alpha \Delta u \]
+\[ 0 = I_y(I_xu + I_yv + I_t) - \alpha \Delta v \]
+In these equations, \( \Delta \) is the LaGrange operator, which can be measured using the following equation: 
+\[ \Delta u(x, y) = \bar{u} (x,y) - u(x, y) \]
+Where \( \bar{u} \) is the weighted average of u measured at a neighborhood around (x, y). 
+
+We can substitute this definition for \( \Delta \) into our original 2 equations to get: 
+\[ (I^2_x + \alpha^2)u + I_xI_yv = \alpha^2 \bar{u} - I_xI_t \]
+\[ (I^2_y + \alpha^2)v + I_xI_yu = \alpha^2 \bar{v} - I_yI_t \]
+These equations are linear in both u and v, so they can be solved analytically for each pixel individually. However, notice that the solution for \( u \) and  \( v \) for a pixel (x, y) depends on the optical flow values in a neighborhood around a (x, y), so we must iteratively update u and v once their neighbors have been updated. We get the following recursive equation to show this relationship: 
+\[ u^{k + 1} = \bar{u}^k - \frac{I_x(I_x\bar{u}^k + I_y\bar{v}^k + I_t)}{\alpha^2 + I_x^2 + I_y^2}\]
+\[ v^{k + 1} = \bar{v}^k - \frac{I_y(I_x\bar{u}^k + I_y\bar{v}^k + I_t)}{\alpha^2 + I_x^2 + I_y^2}\]
+where we define \( \bar{u}^k\) and \(\bar{v}^k\) as the kth values of \(\bar{u}\) and \(\bar{v}\). 
+
+The smoothness regularization constant is a sum of squared terms that we place in the expression to be minimized. It's important to note that in texture-free regions, there is no optical flow and on edges, points will flow to the nearest point, which solves the aperture problem. 
+
+
+Michael Black extended the Horn-Schunk method. He replaced the quadratic regularization function term: 
+<img width="297" alt="Screen Shot 2021-10-18 at 8 53 14 PM" src="https://user-images.githubusercontent.com/68766243/137841132-1b6adfeb-848b-4775-8f33-379894c25686.png">
+with this function: 
+<img width="302" alt="Screen Shot 2021-10-18 at 8 53 47 PM" src="https://user-images.githubusercontent.com/68766243/137841178-9a01add9-8349-4d4e-b6f9-42395fea01c8.png">
+
+
 
 ## 7.5 Applications
 This should give you the primary tools to develop your notes. Check out the [markdown quick reference](https://wordpress.com/support/markdown-quick-reference/) for any further Markdown functionality that you may find useful, and reach out to the teaching team on Piazza if you have any questions about how to create your lecture notes
