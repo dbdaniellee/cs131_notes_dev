@@ -148,15 +148,92 @@ In 7.2.2, we will resolve this overconstraint issue.
 
 In 7.2.1, we showed an example where we were overconstrained with 25 equations solving 2 unknowns. To resolve this issue, we will use least-squares to solve for the vector \\[ \begin{bmatrix} u\\ v\\ \end{bmatrix} \\].
 
-Referring to our previous system of equations of form \\[ A \cdot d = b \\], we will instead use the least-squares form \\[ (A^{T}A)d = A^{T}b \\]
+Referring to our previous system of equations of form \\[ A \cdot d = b \\], we will instead use the least-squares form \\[ (A^{T}A)d = A^{T}b \\]. This new system of equations is equivalent to:
+
+$$
+\begin{bmatrix}
+\Sigma I_xI_x & \Sigma I_xI_y\\
+\Sigma I_xI_y & \Sigma I_yI_y\\
+\end{bmatrix} 
+\cdot 
+\begin{bmatrix}
+u\\
+v\\
+\end{bmatrix} =
+-\begin{bmatrix}
+\Sigma I_xI_t\\
+\Sigma I_yI_t\\
+\end{bmatrix}
+$$
+
+The dimensions of resulting matrix are (2 x 2) x (2 x 1) = 2 x 1, exactly what we wanted.
+
+Some requirements for implementing Lucas-Kanade:
+
+- \\[ A^TA \\] should be invertible
+- \\[ A^TA \\] should be large enough to minimize noise (e.g. eigenvalues \\[ \lambda_1 \\] and \\[ \lambda_2 \\] should be not too small
+- \\[ A^TA \\] should be well-conditioned (e.g. \\[ \lambda_1/ \lambda_2 \\] not too large for \\[ \lambda_1 > \lambda_2 \\]
+
+What does this matrix \\[ A^TA \\] remind you of?
+
+That's right, the second moment matrix M from the Harris corner detector! Both deal with eigenvalues and a 2 x 2 matrix of summations of gradients of an image.
+
+Note that the eigenvectors and eigenvalues of \\[ A^TA \\] determine the edge direction and magnitude:
+
+- The eigenvector with the larger eigenvalue contains the direction of fastest intensity change
+- The other eigenvector is perpendicular to the first
 
 ### 7.2.3 Interpreting the Eigenvalues
 
+As noted in 7.2.2, eigenvalues should have a certain size and proportion to each other in order to provide reliable corner detection. The following image outlines the effects of each eigenvalue scenario and their pitfalls.
 
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/videos/picture_7.3/LK_eig_interpretation.png">
+</div>
+
+1. **Edges:** Around edges, there is an aperture problem. We can measure optical flow in the direction perpendicular to the edge, but along the edge it is hard to discern change.
+2. **Flats:** Flat areas are regions of low texture. These are challenging because of their homogeneity and are not easily distinguishable.
+3. **Corners:** Corners are the regions we would like to capture in our Lucas-Kanade study. These provide relatively large eigenvalues for each eigenvector, and are relatively distinguishable features.
 
 ### 7.2.4 Improving Accuracy
 
+In this section, we will evaluate areas for accuracy improvement.
 
+Recall the small motion assumption from 7.1:
+
+$$
+0 = I(x + u, y + v) - I_t(x, y) \approx I(x, y) + I_xu + I_yv - I_t(x, y)
+$$
+
+This is an approximation, but if we add back higher order terms, we can achieve even greater accuracy:
+
+\\[ I(x, y) + I_xu + I_yv + \\] higher order terms \\[ - I_t(x, y)\\]
+
+The process for finding these higher terms is a polynomial root finding problem. This can be approached in a few ways:
+
+1. Using Newton's method (out of the scope of this class)
+2. More iterations of Lucas-Kanade (increases computational complexity)
+
+**Iterative Refinement:**
+
+Another approach to improving accuracy:
+
+1. Estimate the velocity at each pixel by solving the Lucas-Kanade equations (find (u, v))
+2. Warp the previous image (I(t - 1)) toward the next image (I(t)) using the estimated flow field found in Step 1. This creates a predicted next frame based on (u, v).
+3. Repeat until convergence (this handles residuals not captured in Step 2)
+
+**Potential Sources of Error in Lucas-Kanade:**
+
+Recall that in order to perform Lucas-Kanade, we made a few assumptions:
+
+- Assumed \\[ A^TA \\] is easily invertible
+- Assumed there is not much noise (eigenvalues of \\[ A^TA \\] not too small)
+
+When these assumptions are violated,
+
+- Our small motion assumption is invalid (see 7.1 and 7.2.4)
+- Brightness constancy is not satisfied (can't rely on intensity values)
+- A given pixel doesn't necessarily move like its neighbors (window size too large)
 
 ## 7.3 Pyramids for Large Motion
 ### 7.3.1 Previous Assumptions and Large Motion
