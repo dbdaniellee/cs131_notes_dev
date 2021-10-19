@@ -136,7 +136,7 @@ Whereas on the picture where we use pyramids, we can see that vectors are proper
 </div>
 
 ## 7.4 Horn-Schunk Method
-The Horn-Shunk method seeks to formulate optical flow as a global energy function minimization. So, we will minimize an energy function for an entire image. We can represent a global energy function with the following equation: \[ E = \int \int (I_xu+ I_yv + I_t)^2 + \alpha^2 (||\delta u||^2 + ||\delta v||^2)] dx dy \]
+The Horn-Shunk method seeks to formulate optical flow as a global energy function minimization. So, we will minimize an energy function for an entire image. We can represent a global energy function with the following equation: \\[ E = \int \int (I_xu+ I_yv + I_t)^2 + \alpha^2 (||\delta u||^2 + ||\delta v||^2)] dx dy \\]
 There are 3 major components of this equation to consider during our minimization process. \newline  
 1. The 
 \((I_xu+ I_yv + I_t)^2 \) component of the equation represents the brightness constancy, which we want to be equal to 0 in order to minimize our energy function. Thus, we want to calculate the values for u and v that minimize this term. \newline 
